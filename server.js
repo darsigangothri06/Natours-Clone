@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const app = require('./app');
 
 process.on('uncaughtException', err => {
   console.log('UNCAUGHT EXCEPTION! 💥 Shutting down...');
@@ -8,12 +9,13 @@ process.on('uncaughtException', err => {
 });
 
 dotenv.config({ path: './config.env' });
-const app = require('./app');
 
 const DB = process.env.DATABASE.replace(
   '<PASSWORD>',
   process.env.DATABASE_PASSWORD
 );
+
+// const DB = "mongodb+srv://darsigangothri:QQzPmRM5mHO17UVF@cluster0.te4sc3l.mongodb.net/"
 
 mongoose
   .connect(DB, {
